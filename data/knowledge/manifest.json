@@ -1,0 +1,8 @@
+{
+  "generated_at": "2026-09-24T12:09:13.887761+00:00",
+  "seed": 20260924,
+  "rule_and_metric_count": 20,
+  "synthetic_case_count": 2048,
+  "total_knowledge_items": 2068,
+  "data_statement": "规则来自项目实验结论与演示性审核规范；案例全部为合成数据，不代表真实客户。"
+}

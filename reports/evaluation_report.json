@@ -1,0 +1,203 @@
+{
+  "evaluated_at": "2026-09-24T12:23:05.615470+00:00",
+  "sample_count": 17,
+  "metrics": {
+    "intent_accuracy": 1.0,
+    "retrieval_hit_at_3": 1.0,
+    "citation_completeness": 1.0
+  },
+  "details": [
+    {
+      "query": "最终模型的 AUC 和 KS 是多少",
+      "expected_intent": "metric_query",
+      "predicted_intent": "metric_query",
+      "target_id": "METRIC-AUC",
+      "top3": "METRIC-AUC, METRIC-STABILITY, METRIC-ENSEMBLE",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 11.13
+    },
+    {
+      "query": "0.22 阈值下召回率和精确率怎么样",
+      "expected_intent": "metric_query",
+      "predicted_intent": "metric_query",
+      "target_id": "METRIC-RECALL",
+      "top3": "METRIC-RECALL, RULE-THRESHOLD, METRIC-AUC",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 10.88
+    },
+    {
+      "query": "Platt 校准后概率可信度如何",
+      "expected_intent": "metric_query",
+      "predicted_intent": "metric_query",
+      "target_id": "METRIC-CALIBRATION",
+      "top3": "METRIC-CALIBRATION, RULE-LOW-CONFIDENCE, RULE-LOAN-INCOME",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 11.6
+    },
+    {
+      "query": "信用评级差为什么风险更高",
+      "expected_intent": "case_review",
+      "predicted_intent": "case_review",
+      "target_id": "RULE-GRADE",
+      "top3": "RULE-GRADE, RULE-FICO, RULE-TERM",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 11.65
+    },
+    {
+      "query": "DTI 偏高时审核人员要核验什么",
+      "expected_intent": "case_review",
+      "predicted_intent": "case_review",
+      "target_id": "RULE-DTI",
+      "top3": "RULE-DTI, RULE-FICO, RULE-GRADE",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 11.18
+    },
+    {
+      "query": "FICO 评分低应该怎么看",
+      "expected_intent": "rule_query",
+      "predicted_intent": "rule_query",
+      "target_id": "RULE-FICO",
+      "top3": "RULE-FICO, RULE-LOW-CONFIDENCE, RULE-MISSING",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 14.61
+    },
+    {
+      "query": "贷款金额相对收入太高怎么办",
+      "expected_intent": "rule_query",
+      "predicted_intent": "rule_query",
+      "target_id": "RULE-LOAN-INCOME",
+      "top3": "RULE-LOAN-INCOME, BOUNDARY-SHAP, RULE-INCOME-VERIFY",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 13.08
+    },
+    {
+      "query": "五年期长期贷款要关注什么",
+      "expected_intent": "rule_query",
+      "predicted_intent": "rule_query",
+      "target_id": "RULE-TERM",
+      "top3": "RULE-TERM, METRIC-STABILITY, RULE-LOAN-INCOME",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 13.29
+    },
+    {
+      "query": "近两年存在逾期记录如何审核",
+      "expected_intent": "case_review",
+      "predicted_intent": "case_review",
+      "target_id": "RULE-DELINQUENCY",
+      "top3": "RULE-DELINQUENCY, RULE-FICO, RULE-PUBLIC-RECORD",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 13.1
+    },
+    {
+      "query": "查到公共记录和破产记录应该怎么处理",
+      "expected_intent": "rule_query",
+      "predicted_intent": "rule_query",
+      "target_id": "RULE-PUBLIC-RECORD",
+      "top3": "RULE-PUBLIC-RECORD, RULE-DELINQUENCY, RULE-LOW-CONFIDENCE",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 12.11
+    },
+    {
+      "query": "检索不到可靠规则时怎么办",
+      "expected_intent": "rule_query",
+      "predicted_intent": "rule_query",
+      "target_id": "RULE-LOW-CONFIDENCE",
+      "top3": "RULE-LOW-CONFIDENCE, BOUNDARY-NO-AUTO-DECISION, METRIC-AUC",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 11.3
+    },
+    {
+      "query": "助手能不能直接自动拒贷",
+      "expected_intent": "rule_query",
+      "predicted_intent": "rule_query",
+      "target_id": "BOUNDARY-NO-AUTO-DECISION",
+      "top3": "BOUNDARY-NO-AUTO-DECISION, RULE-DELINQUENCY, METRIC-AUC",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 12.67
+    },
+    {
+      "query": "SHAP 是否说明了因果关系",
+      "expected_intent": "rule_query",
+      "predicted_intent": "rule_query",
+      "target_id": "BOUNDARY-SHAP",
+      "top3": "BOUNDARY-SHAP, RULE-DELINQUENCY, RULE-PUBLIC-RECORD",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 11.68
+    },
+    {
+      "query": "模型迁移到别的贷款产品需要重新验证吗",
+      "expected_intent": "rule_query",
+      "predicted_intent": "rule_query",
+      "target_id": "BOUNDARY-DATA",
+      "top3": "BOUNDARY-DATA, RULE-THRESHOLD, RULE-INCOME-VERIFY",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 11.99
+    },
+    {
+      "query": "客户收入缺失应该怎么处理",
+      "expected_intent": "rule_query",
+      "predicted_intent": "rule_query",
+      "target_id": "RULE-MISSING",
+      "top3": "RULE-MISSING, RULE-LOW-CONFIDENCE, RULE-LOAN-INCOME",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 11.15
+    },
+    {
+      "query": "滚动时间窗口的 AUC 稳定吗",
+      "expected_intent": "metric_query",
+      "predicted_intent": "metric_query",
+      "target_id": "METRIC-STABILITY",
+      "top3": "METRIC-STABILITY, METRIC-AUC, RULE-PUBLIC-RECORD",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 11.65
+    },
+    {
+      "query": "为什么没有选择 Stacking 集成模型",
+      "expected_intent": "metric_query",
+      "predicted_intent": "metric_query",
+      "target_id": "METRIC-ENSEMBLE",
+      "top3": "METRIC-ENSEMBLE, BOUNDARY-SHAP, BOUNDARY-DATA",
+      "intent_ok": true,
+      "retrieval_ok": true,
+      "citation_ok": true,
+      "elapsed_ms": 11.36
+    }
+  ],
+  "limitations": [
+    "评测集由项目作者构建，规模较小，可能高估泛化效果。",
+    "案例全部为合成数据，尚未进行真实审核人员用户测试。",
+    "效率提升比例尚未测量，不能据此声称提升 60%。"
+  ]
+}
