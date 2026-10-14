@@ -2,6 +2,8 @@
 
 这是一个由信贷违约预测项目延伸出的个人产品原型。它帮助风控审核人员完成规则查询、相似案例检索和单笔申请初审，并为每条结论保留证据引用与审计记录。
 
+**在线体验：** [aadrian42-risk-review-assistant.streamlit.app](https://aadrian42-risk-review-assistant.streamlit.app/)
+
 > 项目边界：这是离线原型，不连接京东内部系统，不使用企业生产数据，也不自动作出授信决定。演示案例均为合成数据。
 
 ## 已实现能力
