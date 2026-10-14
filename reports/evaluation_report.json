@@ -1,5 +1,5 @@
 {
-  "evaluated_at": "2026-09-24T12:23:05.615470+00:00",
+  "evaluated_at": "2026-10-14T05:15:25.158465+00:00",
   "sample_count": 17,
   "metrics": {
     "intent_accuracy": 1.0,
@@ -16,7 +16,7 @@
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 11.13
+      "elapsed_ms": 51.46
     },
     {
       "query": "0.22 阈值下召回率和精确率怎么样",
@@ -27,7 +27,7 @@
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 10.88
+      "elapsed_ms": 18.33
     },
     {
       "query": "Platt 校准后概率可信度如何",
@@ -38,7 +38,7 @@
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 11.6
+      "elapsed_ms": 17.89
     },
     {
       "query": "信用评级差为什么风险更高",
@@ -49,7 +49,7 @@
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 11.65
+      "elapsed_ms": 19.77
     },
     {
       "query": "DTI 偏高时审核人员要核验什么",
@@ -60,7 +60,7 @@
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 11.18
+      "elapsed_ms": 20.16
     },
     {
       "query": "FICO 评分低应该怎么看",
@@ -71,7 +71,7 @@
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 14.61
+      "elapsed_ms": 18.68
     },
     {
       "query": "贷款金额相对收入太高怎么办",
@@ -82,7 +82,7 @@
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 13.08
+      "elapsed_ms": 18.97
     },
     {
       "query": "五年期长期贷款要关注什么",
@@ -93,7 +93,7 @@
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 13.29
+      "elapsed_ms": 18.47
     },
     {
       "query": "近两年存在逾期记录如何审核",
@@ -104,29 +104,29 @@
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 13.1
+      "elapsed_ms": 19.09
     },
     {
       "query": "查到公共记录和破产记录应该怎么处理",
       "expected_intent": "rule_query",
       "predicted_intent": "rule_query",
       "target_id": "RULE-PUBLIC-RECORD",
-      "top3": "RULE-PUBLIC-RECORD, RULE-DELINQUENCY, RULE-LOW-CONFIDENCE",
+      "top3": "RULE-PUBLIC-RECORD, RULE-DELINQUENCY, RULE-MISSING",
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 12.11
+      "elapsed_ms": 18.49
     },
     {
       "query": "检索不到可靠规则时怎么办",
       "expected_intent": "rule_query",
       "predicted_intent": "rule_query",
       "target_id": "RULE-LOW-CONFIDENCE",
-      "top3": "RULE-LOW-CONFIDENCE, BOUNDARY-NO-AUTO-DECISION, METRIC-AUC",
+      "top3": "RULE-LOW-CONFIDENCE, BOUNDARY-NO-AUTO-DECISION, RULE-THRESHOLD",
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 11.3
+      "elapsed_ms": 18.5
     },
     {
       "query": "助手能不能直接自动拒贷",
@@ -137,62 +137,62 @@
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 12.67
+      "elapsed_ms": 18.33
     },
     {
       "query": "SHAP 是否说明了因果关系",
       "expected_intent": "rule_query",
       "predicted_intent": "rule_query",
       "target_id": "BOUNDARY-SHAP",
-      "top3": "BOUNDARY-SHAP, RULE-DELINQUENCY, RULE-PUBLIC-RECORD",
+      "top3": "BOUNDARY-SHAP, RULE-DELINQUENCY, BOUNDARY-NO-AUTO-DECISION",
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 11.68
+      "elapsed_ms": 18.57
     },
     {
       "query": "模型迁移到别的贷款产品需要重新验证吗",
       "expected_intent": "rule_query",
       "predicted_intent": "rule_query",
       "target_id": "BOUNDARY-DATA",
-      "top3": "BOUNDARY-DATA, RULE-THRESHOLD, RULE-INCOME-VERIFY",
+      "top3": "BOUNDARY-DATA, RULE-INCOME-VERIFY, RULE-THRESHOLD",
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 11.99
+      "elapsed_ms": 18.62
     },
     {
       "query": "客户收入缺失应该怎么处理",
       "expected_intent": "rule_query",
       "predicted_intent": "rule_query",
       "target_id": "RULE-MISSING",
-      "top3": "RULE-MISSING, RULE-LOW-CONFIDENCE, RULE-LOAN-INCOME",
+      "top3": "RULE-MISSING, RULE-LOW-CONFIDENCE, METRIC-RECALL",
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 11.15
+      "elapsed_ms": 18.85
     },
     {
       "query": "滚动时间窗口的 AUC 稳定吗",
       "expected_intent": "metric_query",
       "predicted_intent": "metric_query",
       "target_id": "METRIC-STABILITY",
-      "top3": "METRIC-STABILITY, METRIC-AUC, RULE-PUBLIC-RECORD",
+      "top3": "METRIC-STABILITY, METRIC-AUC, METRIC-ENSEMBLE",
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 11.65
+      "elapsed_ms": 18.95
     },
     {
       "query": "为什么没有选择 Stacking 集成模型",
       "expected_intent": "metric_query",
       "predicted_intent": "metric_query",
       "target_id": "METRIC-ENSEMBLE",
-      "top3": "METRIC-ENSEMBLE, BOUNDARY-SHAP, BOUNDARY-DATA",
+      "top3": "METRIC-ENSEMBLE, BOUNDARY-DATA, BOUNDARY-SHAP",
       "intent_ok": true,
       "retrieval_ok": true,
       "citation_ok": true,
-      "elapsed_ms": 11.36
+      "elapsed_ms": 18.38
     }
   ],
   "limitations": [

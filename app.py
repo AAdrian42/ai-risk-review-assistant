@@ -181,6 +181,9 @@ with qa_tab:
 
 with system_tab:
     st.subheader("知识库")
+    st.caption("检索：LangChain InMemoryVectorStore + 本地字符向量 + TF-IDF 重排")
+    st.caption("工作流：意图路由 → 风险评分 → 规则/案例检索 → 证据回答 → 引用校验 → 审计记录")
+    st.caption("当前回答模式：本地证据提取；GPT / Claude 接口已实现，尚未配置在线密钥。")
     c1, c2, c3 = st.columns(3)
     c1.metric("规则与指标", manifest["rule_and_metric_count"])
     c2.metric("合成案例", f"{manifest['synthetic_case_count']:,}")
@@ -192,6 +195,7 @@ with system_tab:
     if report_path.exists():
         report = json.loads(report_path.read_text(encoding="utf-8"))
         metrics = report["metrics"]
+        st.caption(f"作者自建 {report['sample_count']} 道测试题；Hit@3 为检索命中率，不代表真实用户回答准确率。")
         e1, e2, e3 = st.columns(3)
         e1.metric("意图准确率", f"{metrics['intent_accuracy']:.1%}")
         e2.metric("检索 Hit@3", f"{metrics['retrieval_hit_at_3']:.1%}")

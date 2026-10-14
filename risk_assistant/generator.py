@@ -20,10 +20,14 @@ class AnswerGenerator:
         evidence: list[SearchResult],
         risk_assessment: dict[str, Any] | None = None,
     ) -> tuple[str, str]:
-        if self.provider == "openai" and os.getenv("OPENAI_API_KEY"):
-            return self._openai(question, evidence, risk_assessment), "openai"
-        if self.provider == "anthropic" and os.getenv("ANTHROPIC_API_KEY"):
-            return self._anthropic(question, evidence, risk_assessment), "anthropic"
+        try:
+            if self.provider == "openai" and os.getenv("OPENAI_API_KEY"):
+                return self._openai(question, evidence, risk_assessment), "openai"
+            if self.provider == "anthropic" and os.getenv("ANTHROPIC_API_KEY"):
+                return self._anthropic(question, evidence, risk_assessment), "anthropic"
+        except Exception:
+            # Do not surface credentials or provider error payloads to the UI.
+            return self._local(question, evidence, risk_assessment), "local_fallback"
         return self._local(question, evidence, risk_assessment), "local_grounded"
 
     @staticmethod
@@ -74,7 +78,7 @@ class AnswerGenerator:
     ) -> str:
         from openai import OpenAI
 
-        client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+        client = OpenAI(api_key=os.environ["OPENAI_API_KEY"], timeout=20, max_retries=1)
         response = client.chat.completions.create(
             model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
             temperature=0,
@@ -96,7 +100,7 @@ class AnswerGenerator:
     ) -> str:
         from anthropic import Anthropic
 
-        client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+        client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"], timeout=20, max_retries=1)
         response = client.messages.create(
             model=os.getenv("ANTHROPIC_MODEL", "claude-3-5-haiku-latest"),
             max_tokens=800,

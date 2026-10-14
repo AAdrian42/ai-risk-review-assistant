@@ -5,6 +5,7 @@ import re
 import time
 from pathlib import Path
 from typing import Any
+from langchain_core.runnables import RunnableLambda
 
 from .audit import AuditLogger
 from .generator import AnswerGenerator
@@ -98,8 +99,15 @@ class RiskReviewWorkflow:
         log_event: bool = True,
     ) -> WorkflowResult:
         started = time.perf_counter()
-        intent = self.classify_intent(question, application)
-        risk_assessment = self.risk_engine.assess(application) if application else None
+        input_chain = (
+            RunnableLambda(lambda state: {**state, "intent": self.classify_intent(
+                state["question"], state["application"])}, name="intent_router")
+            | RunnableLambda(lambda state: {**state, "risk": self.risk_engine.assess(
+                state["application"]) if state["application"] else None}, name="risk_scoring")
+        )
+        state = input_chain.invoke({"question": question, "application": application})
+        intent = state["intent"]
+        risk_assessment = state["risk"]
 
         if intent == "case_search":
             evidence_types = {"case"}
@@ -131,8 +139,15 @@ class RiskReviewWorkflow:
                 top_k=self.top_k,
                 item_types=evidence_types,
             )
-        answer, mode = self.generator.generate(question, evidence, risk_assessment)
-        answer, warnings = self._guardrail(answer, evidence)
+        output_chain = (
+            RunnableLambda(lambda _: self.generator.generate(question, evidence, risk_assessment),
+                           name="grounded_generation")
+            | RunnableLambda(lambda generated: (*self._guardrail(generated[0], evidence), generated[1]),
+                             name="citation_guardrail")
+        )
+        answer, warnings, mode = output_chain.invoke(None)
+        if mode != self.generator.provider and self.generator.provider != "local":
+            warnings.append("在线模型未配置或调用失败，已使用本地证据回答。")
         elapsed_ms = round((time.perf_counter() - started) * 1000, 2)
         result = WorkflowResult(
             intent=intent,
@@ -161,6 +176,9 @@ class RiskReviewWorkflow:
         warnings: list[str] = []
         cited = set(re.findall(r"\[([A-Z]+-[A-Z0-9-]+)\]", answer))
         evidence_ids = {result.item.item_id for result in evidence}
+        if cited - evidence_ids:
+            return AnswerGenerator(provider="local")._local("", evidence, None), [
+                "模型引用了未检索到的证据，已改为本地证据回答。"]
         if evidence and not (cited & evidence_ids):
             warnings.append("回答缺少有效证据编号，系统已补充引用。")
             answer += "\n\n参考证据：" + "、".join(f"[{value}]" for value in sorted(evidence_ids)[:3])
